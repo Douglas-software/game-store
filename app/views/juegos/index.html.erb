@@ -1,0 +1,36 @@
+<h1>Tienda de juegos</h1>
+
+<!-- Menú de categorías -->
+<div>
+    <button onclick="toogleMenu()">Mostrar por categorías</button>
+    <div id="menu-categorias" style="display:none;">
+        <ul>
+            <li><%= link_to "Accion", juegos_categoria_path('Accion') %></li>
+            <li><%= link_to "Aventura", juegos_categoria_path('Aventura') %></li>
+            <li><%= link_to "Estrategia", juegos_categoria_path('Estrategia') %></li>
+            <li><%= link_to "Deportes", juegos_categoria_path('Deportes') %></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Lista de juegos -->
+<ul>
+    <% @juego.each do |juego| %>
+        <li>
+            <strong><%= juego.descripcion %></strong> - <%= juego.precio %> USD
+            <p>Categoria: <%= juego.categoria %></p>
+            <p>Fecha de lanzamiento: <%= juego.fecha_lanzamiento.strftime('%d/%m/%Y') %></p>
+        </li>
+    <% end %>
+</ul>
+
+<script>
+    function toogleMenu() {
+        var menu = document.getElementById('menu-categorias');
+        if (menu.style.display == 'none') {
+            menu.style.display = 'block';
+        } else {
+            menu.style.display = 'none';
+        }
+    }
+</script>
